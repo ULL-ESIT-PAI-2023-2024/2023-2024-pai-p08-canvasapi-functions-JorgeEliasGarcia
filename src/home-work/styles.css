@@ -1,0 +1,17 @@
+h1 {
+  text-align: center;
+  color: black;
+}
+
+body {
+  background: lightblue ;
+  color: black;
+}
+
+canvas {
+  background: whitesmoke;
+  padding: 0;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  display: block;
+}
