@@ -10,6 +10,7 @@
  *        Class to draw a coordinate axis on a canvas. It will be drawns on the center of the canvas.
  */
 
+///<reference path="rectangle.ts" /> 
 
 // Class Definition
 class CoordinateAxis {
@@ -21,7 +22,7 @@ class CoordinateAxis {
    * @param {string} fillColor By default will be black. 
    * @return It doesn´t return anything. 
    */
-  constructor(private scaleUnit: number = 50, private strokeWidth: number = 3, private fillColor: string = 'black') {
+  constructor(private scaleUnit: number = 100, private strokeWidth: number = 3, private fillColor: string = 'black') {
     this.scaleUnit = scaleUnit;
     this.strokeWidth = strokeWidth;
     this.fillColor = fillColor;
@@ -63,18 +64,49 @@ class CoordinateAxis {
    * @param {string} font - The font of the number. By default will be 15px Arial.
    * @return It doesn´t return anything, it just draws the number in the coordinate axis.
    */
-  private drawNumbers(context: CanvasRenderingContext2D, font: string = "25px Arial" ): void {
+  private drawNumbers(context: CanvasRenderingContext2D, font: string = "15px Arial" ): void {
     context.save(); // Saves the current styles set elsewhere to avoid overwriting them
     context.fillStyle = this.fillColor // Set the styles for this shape
     context.font = font; // Adjust the size of the font, to see the number bigger.
-    /*
-    for (let i = 0; i < context.canvas.width; i += this.scaleUnit) { // Draw the numbers in the horizontal axis
-      context.fillText(i.toString(), i, context.canvas.height / 2 + 10);
+    const MARGIN_DISTANCE: number = 20; // Distance from the number to the axis
+    const MIDDLE_WIDTH: number = context.canvas.width / 2; // Middle of the width of the canvas
+    const MIDDLE_HEIGHT: number = context.canvas.height / 2; // Middle of the height of the canvas
+    const RECTANGLE_MARGIN: number = 3; 
+    for (let i: number = 0, j: number = 0; i < MIDDLE_WIDTH; i += this.scaleUnit, j -= 2) { // Draw the negative numbers in the horizontal axis
+      context.fillText(j.toString(), MIDDLE_WIDTH - i, MIDDLE_HEIGHT + MARGIN_DISTANCE);
+      this.drawRectangleAboveNumber(context, MIDDLE_WIDTH - i, MIDDLE_HEIGHT - RECTANGLE_MARGIN);
     }
-    for (let i = 0; i < context.canvas.height; i +=  this.scaleUnit) { // Draw the numbers in the vertical axis
-      context.fillText(i.toString(), context.canvas.width / 2 + 10, i);
-    }*/
-    context.fillText('5', context.canvas.width / 2 + 10, context.canvas.height / 2 - 100); // Draw the 0 in the middle of the axis
+    for (let i: number = this.scaleUnit, j: number = 2; i < MIDDLE_WIDTH; i += this.scaleUnit, j += 2) { // Draw the positive numbers in the horizontal axis
+      context.fillText(j.toString(), MIDDLE_WIDTH + i, MIDDLE_HEIGHT + MARGIN_DISTANCE);
+      this.drawRectangleAboveNumber(context, MIDDLE_WIDTH + i, MIDDLE_HEIGHT - RECTANGLE_MARGIN);
+    }
+    for (let i: number = this.scaleUnit, j: number = 2; i < MIDDLE_HEIGHT; i += this.scaleUnit, j += 2) { // Draw the positive numbers in the vertical axis. We start higher to don´t draw the 0.
+      context.fillText(j.toString(), MIDDLE_WIDTH + MARGIN_DISTANCE, MIDDLE_HEIGHT - i);
+      this.drawRectangleAboveNumber(context, MIDDLE_WIDTH - RECTANGLE_MARGIN, MIDDLE_HEIGHT - i, true);
+    }
+    for (let i: number = this.scaleUnit, j: number = -2; i < MIDDLE_HEIGHT; i += this.scaleUnit, j -= 2) { // Draw the negative numbers in the vertical axis
+      context.fillText(j.toString(), MIDDLE_WIDTH + MARGIN_DISTANCE, MIDDLE_HEIGHT + i);
+      this.drawRectangleAboveNumber(context, MIDDLE_WIDTH - RECTANGLE_MARGIN, MIDDLE_HEIGHT + i, true);
+    }
+    
     context.restore();
+  }
+  
+  /**
+   * @description Method to draw a rectangle above the number in the axis.
+   * @param {CanvasRenderingContext2D} context - The context of the canvas where the CoordinateAxis will be drawn.
+   * @param {number} xPosition - X coord of the rectangle's position
+   * @param {number} yPosition - Y coord of the rectangle's position
+   * @param {boolean} invert - If the rectangle will be drawn above or below the number. By default will be false.
+   * @return It doesn´t return anything, it just draws the rectangle above the number in the axis.
+   */
+  private drawRectangleAboveNumber(context: CanvasRenderingContext2D, xPosition: number, yPosition: number, invert: boolean = false) {
+    const RECTANGLE_WIDTH: number = 4;
+    const RECTANGLE_HEIGHT: number = 7;
+    let rectangleInTheAxis = new Rectangle(xPosition, yPosition, RECTANGLE_WIDTH, RECTANGLE_HEIGHT);
+    if (invert) {
+      rectangleInTheAxis = new Rectangle(xPosition, yPosition, RECTANGLE_HEIGHT, RECTANGLE_WIDTH);
+    }
+    rectangleInTheAxis.draw(context);
   }
 }
