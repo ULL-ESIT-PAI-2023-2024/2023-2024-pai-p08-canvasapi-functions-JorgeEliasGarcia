@@ -10,7 +10,7 @@
  *        Main file to draw functions on the canvas
  */
 
-///<reference path="coordinate_axis.ts" />
+///<reference path="graph.ts" />
 
 /**
  * @Description Main Function. It will draw the function on the canvas. 
@@ -18,10 +18,8 @@
  * @return It won´t return anything, it will just draw the function on the canvas.
  */
 const main = function(): void { 
-  const canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('tutorial');
-  const context: CanvasRenderingContext2D = canvas.getContext('2d')!;
-  const coordinateAxis: CoordinateAxis = new CoordinateAxis();
-  coordinateAxis.draw(context);
+  const graph: Graph = new Graph(50);
+  graph.draw();
 };
  
 main(); 

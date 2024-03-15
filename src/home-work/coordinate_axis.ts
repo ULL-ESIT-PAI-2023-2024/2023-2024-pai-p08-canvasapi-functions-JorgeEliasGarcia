@@ -72,20 +72,28 @@ class CoordinateAxis {
     const MIDDLE_WIDTH: number = context.canvas.width / 2; // Middle of the width of the canvas
     const MIDDLE_HEIGHT: number = context.canvas.height / 2; // Middle of the height of the canvas
     const RECTANGLE_MARGIN: number = 3; 
-    for (let i: number = 0, j: number = 0; i < MIDDLE_WIDTH; i += this.scaleUnit, j -= 2) { // Draw the negative numbers in the horizontal axis
-      context.fillText(j.toString(), MIDDLE_WIDTH - i, MIDDLE_HEIGHT + MARGIN_DISTANCE);
+    for (let i: number = 0, j: number = 0; i < MIDDLE_WIDTH; i += this.scaleUnit, --j) { // Draw the negative numbers in the horizontal axis
+      if (j % 2 == 0) { 
+        context.fillText(j.toString(), MIDDLE_WIDTH - i, MIDDLE_HEIGHT + MARGIN_DISTANCE); 
+      }
       this.drawRectangleAboveNumber(context, MIDDLE_WIDTH - i, MIDDLE_HEIGHT - RECTANGLE_MARGIN);
     }
-    for (let i: number = this.scaleUnit, j: number = 2; i < MIDDLE_WIDTH; i += this.scaleUnit, j += 2) { // Draw the positive numbers in the horizontal axis
-      context.fillText(j.toString(), MIDDLE_WIDTH + i, MIDDLE_HEIGHT + MARGIN_DISTANCE);
+    for (let i: number = this.scaleUnit, j: number = 1; i < MIDDLE_WIDTH; i += this.scaleUnit, ++j) { // Draw the positive numbers in the horizontal axis
+      if (j % 2 == 0) {
+        context.fillText(j.toString(), MIDDLE_WIDTH + i, MIDDLE_HEIGHT + MARGIN_DISTANCE);
+      }
       this.drawRectangleAboveNumber(context, MIDDLE_WIDTH + i, MIDDLE_HEIGHT - RECTANGLE_MARGIN);
     }
-    for (let i: number = this.scaleUnit, j: number = 2; i < MIDDLE_HEIGHT; i += this.scaleUnit, j += 2) { // Draw the positive numbers in the vertical axis. We start higher to don´t draw the 0.
-      context.fillText(j.toString(), MIDDLE_WIDTH + MARGIN_DISTANCE, MIDDLE_HEIGHT - i);
+    for (let i: number = this.scaleUnit, j: number = 1; i < MIDDLE_HEIGHT; i += this.scaleUnit, ++j) { // Draw the positive numbers in the vertical axis. We start higher to don´t draw the 0
+      if (j % 2 == 0) {
+        context.fillText(j.toString(), MIDDLE_WIDTH + MARGIN_DISTANCE, MIDDLE_HEIGHT - i);
+      }
       this.drawRectangleAboveNumber(context, MIDDLE_WIDTH - RECTANGLE_MARGIN, MIDDLE_HEIGHT - i, true);
     }
-    for (let i: number = this.scaleUnit, j: number = -2; i < MIDDLE_HEIGHT; i += this.scaleUnit, j -= 2) { // Draw the negative numbers in the vertical axis
-      context.fillText(j.toString(), MIDDLE_WIDTH + MARGIN_DISTANCE, MIDDLE_HEIGHT + i);
+    for (let i: number = this.scaleUnit, j: number = -1; i < MIDDLE_HEIGHT; i += this.scaleUnit, --j) { // Draw the negative numbers in the vertical axis
+      if (j % 2 == 0) { 
+        context.fillText(j.toString(), MIDDLE_WIDTH + MARGIN_DISTANCE, MIDDLE_HEIGHT + i);
+      }
       this.drawRectangleAboveNumber(context, MIDDLE_WIDTH - RECTANGLE_MARGIN, MIDDLE_HEIGHT + i, true);
     }
     
