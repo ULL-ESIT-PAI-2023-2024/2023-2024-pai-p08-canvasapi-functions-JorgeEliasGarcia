@@ -14,6 +14,10 @@
 ///<reference path="grid.ts" />
 ///<reference path="sqrt.ts" />
 ///<reference path="log.ts" />
+///<reference path="sen.ts" />
+///<reference path="cos.ts" />
+///<reference path="atan.ts" />
+///<reference path="exp.ts" />
 
 class Graph {
   private static canvas: HTMLCanvasElement = document.getElementById('tutorial') as HTMLCanvasElement;
@@ -39,5 +43,14 @@ class Graph {
     sqrt.draw(Graph.context, this.scaleUnit); 
     const log: Log = new Log();
     log.draw(Graph.context, this.scaleUnit);
+    //const sen: Sen = new Sen();
+    // sen.draw(Graph.context, this.scaleUnit);
+    // const cos: Cos = new Cos();
+    // cos.draw(Graph.context, this.scaleUnit);
+    // const atan: ATan = new ATan();
+    // atan.draw(Graph.context, this.scaleUnit);
+   // const exp: Exp = new Exp();
+   // exp.draw(Graph.context, this.scaleUnit);
+
   }
 }
