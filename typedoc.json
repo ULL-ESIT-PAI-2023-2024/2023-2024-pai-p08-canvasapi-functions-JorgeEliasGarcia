@@ -1,0 +1,7 @@
+{
+  "entryPoints": [
+      "./src/home-work/*.ts"
+  ], 
+  "tsconfig": "./tsconfig.json",
+  "out": "./docs"
+}
