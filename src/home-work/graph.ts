@@ -41,12 +41,12 @@ class Graph {
     grid.draw(Graph.context);
     const sqrt: Sqrt = new Sqrt();
     sqrt.draw(Graph.context, this.scaleUnit); 
-  //   const log: Log = new Log();
-  //   log.draw(Graph.context, this.scaleUnit);
-  //   const sen: Sen = new Sen();
-  //   sen.draw(Graph.context, this.scaleUnit);
-  //   const cos: Cos = new Cos();
-  //   cos.draw(Graph.context, this.scaleUnit);
+    const log: Log = new Log();
+    log.draw(Graph.context, this.scaleUnit);
+    const sen: Sen = new Sen();
+    sen.draw(Graph.context, this.scaleUnit);
+    const cos: Cos = new Cos();
+    cos.draw(Graph.context, this.scaleUnit);
   //   const atan: ATan = new ATan();
   //   atan.draw(Graph.context, this.scaleUnit);
   //  const exp: Exp = new Exp();

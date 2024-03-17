@@ -21,4 +21,5 @@ abstract class MyFunction implements FunctionInterface {
     this.scaleReducedFactor = scaleReducedFactor; 
   }
   abstract draw(context: CanvasRenderingContext2D, scaleUnit: number, color: string, lineWidth: number): void;
+  abstract value(x: number): number;
 }

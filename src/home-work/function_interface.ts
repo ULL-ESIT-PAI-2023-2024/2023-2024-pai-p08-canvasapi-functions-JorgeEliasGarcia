@@ -12,4 +12,5 @@
 
 interface FunctionInterface {
   draw(context: CanvasRenderingContext2D, scaleUnit: number, color: string, lineWidth: number): void; 
+  value(x: number): number; 
 }
