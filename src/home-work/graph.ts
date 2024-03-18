@@ -12,12 +12,7 @@
 
 ///<reference path="coordinate_axis.ts" />
 ///<reference path="grid.ts" />
-///<reference path="sqrt.ts" />
-///<reference path="log.ts" />
-///<reference path="sen.ts" />
-///<reference path="cos.ts" />
-///<reference path="atan.ts" />
-///<reference path="exp.ts" />
+///<reference path="function.ts" />
 
 class Graph {
   private static canvas: HTMLCanvasElement = document.getElementById('tutorial') as HTMLCanvasElement;
@@ -27,30 +22,21 @@ class Graph {
    * @param {number} scaleUnit Scale unit for the graph. By default it is 100.
    * @return It doesn´t return anything. 
    */
-  constructor(private scaleUnit: number = 100) {
+  constructor(private scaleUnit: number = 50) {
     this.scaleUnit = scaleUnit;
   }
   /**
    * @description Method to draw the function and the coordinate axis on the canvas.
+   * @param {MyFunction} functionsToDraw The vector with the functions to be drawn on the canvas.
    * @return It doesn´t return anything. 
    */
-  public draw(): void {
+  public draw( functionsToDraw: MyFunction[] ): void {
     const coordinateAxis: CoordinateAxis = new CoordinateAxis(this.scaleUnit);
     coordinateAxis.draw(Graph.context);
     const grid: GRID = new GRID(this.scaleUnit);
     grid.draw(Graph.context);
-    const sqrt: Sqrt = new Sqrt();
-    sqrt.draw(Graph.context, this.scaleUnit); 
-    const log: Log = new Log();
-    log.draw(Graph.context, this.scaleUnit);
-    const sen: Sen = new Sen();
-    sen.draw(Graph.context, this.scaleUnit);
-    const cos: Cos = new Cos();
-    cos.draw(Graph.context, this.scaleUnit);
-  //   const atan: ATan = new ATan();
-  //   atan.draw(Graph.context, this.scaleUnit);
-  //  const exp: Exp = new Exp();
-  //  exp.draw(Graph.context, this.scaleUnit);
-
+    for ( let actualFunction of functionsToDraw) {
+      actualFunction.draw(Graph.context, this.scaleUnit);
+    }
   }
 }

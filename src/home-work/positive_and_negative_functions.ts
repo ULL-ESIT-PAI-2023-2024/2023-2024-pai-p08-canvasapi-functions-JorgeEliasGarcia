@@ -34,7 +34,7 @@ abstract class PositiveAndNegativeFunction extends MyFunction {
     for (let i: number = context.canvas.width / 2, j: number = firstNonNegativeValue; i < context.canvas.width; i += reducedScale, j += 1 / this.scaleReducedFactor) {
       context.lineTo(i, context.canvas.height / 2 - this.value(j) * scaleUnit);
     }
-    context.moveTo(context.canvas.width / 2, context.canvas.height / 2 - Math.exp(firstNonNegativeValue) * scaleUnit);
+    context.moveTo(context.canvas.width / 2, context.canvas.height / 2 - this.value(firstNonNegativeValue) * scaleUnit); 
     // We will draw from the middle of the canvas to the left.
     for (let i: number = context.canvas.width / 2 - reducedScale, j: number = - (1 / this.scaleReducedFactor); i > 0; i -= reducedScale, j -= 1 / this.scaleReducedFactor) {
       context.lineTo(i, context.canvas.height / 2 - this.value(j) * scaleUnit);

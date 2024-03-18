@@ -11,6 +11,13 @@
  */
 
 ///<reference path="graph.ts" />
+///<reference path="exp.ts" />
+///<reference path="sen.ts" />
+///<reference path="cos.ts" />
+///<reference path="atan.ts" />
+///<reference path="log.ts" />
+///<reference path="sqrt.ts" />
+
 
 /**
  * @Description Main Function. It will draw the function on the canvas. 
@@ -19,7 +26,14 @@
  */
 const main = function(): void { 
   const graph: Graph = new Graph(50);
-  graph.draw();
+  let functionsToDraw: MyFunction[] = [];
+  functionsToDraw.push(new Sen());
+  functionsToDraw.push(new Sqrt());
+  functionsToDraw.push(new Cos());
+//  functionsToDraw.push(new Exp());
+//  functionsToDraw.push(new Log());
+//  functionsToDraw.push(new Atan());
+  graph.draw(functionsToDraw);
 };
  
 main(); 

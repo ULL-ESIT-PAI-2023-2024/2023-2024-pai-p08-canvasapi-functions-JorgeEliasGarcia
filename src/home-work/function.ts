@@ -20,6 +20,6 @@ abstract class MyFunction implements FunctionInterface {
   constructor(protected scaleReducedFactor: number = 100) { // Higher the reduced factor, higher detail in the function.
     this.scaleReducedFactor = scaleReducedFactor; 
   }
-  abstract draw(context: CanvasRenderingContext2D, scaleUnit: number, color: string, lineWidth: number): void;
+  abstract draw(context: CanvasRenderingContext2D, scaleUnit: number, color?: string, lineWidth?: number): void;
   abstract value(x: number): number;
 }

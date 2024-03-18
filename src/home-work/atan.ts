@@ -12,7 +12,7 @@
 
 ///<reference path="trigonometric_functions.ts" />
 
-class ATan extends TrigonometricFunction {
+class Atan extends TrigonometricFunction {
 
   /**
    * @description Method to get the value of the tan.
