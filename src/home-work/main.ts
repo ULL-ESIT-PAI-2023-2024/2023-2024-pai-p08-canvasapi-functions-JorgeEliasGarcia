@@ -25,7 +25,7 @@
  * @return It won´t return anything, it will just draw the function on the canvas.
  */
 const main = function(): void { 
-  const graph: Graph = new Graph(50);
+  const graph: Graph = new Graph();
   let functionsToDraw: MyFunction[] = [];
   functionsToDraw.push(new Sen());
   functionsToDraw.push(new Sqrt());
